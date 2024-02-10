@@ -12,7 +12,12 @@ flutter pub upgrade
 flutter run --device-connection attached
 ```
 
-* Clean old and unused cached files
+* Clean old and unused cached Android files
+```sh
+cd android; ./gradlew clean
+```
+
+* Clean old and unused cached Flutter files
 ```sh
 flutter clean
 ```
