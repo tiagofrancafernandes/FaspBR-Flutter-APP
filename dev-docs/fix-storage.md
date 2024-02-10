@@ -1,4 +1,4 @@
-The error message you're encountering indicates that the application is unable to find the metadata for the FileProvider with the specified authority (`com.example.igreja_browser.flutter_inappwebview.fileprovider`). This typically happens when the `FileProvider` configuration in the AndroidManifest.xml file is incorrect or missing.
+The error message you're encountering indicates that the application is unable to find the metadata for the FileProvider with the specified authority (`br.com.faspbr.flutter_inappwebview.fileprovider`). This typically happens when the `FileProvider` configuration in the AndroidManifest.xml file is incorrect or missing.
 
 Here's what you need to do to fix this issue:
 
@@ -60,7 +60,7 @@ Para resolver esse problema, você precisa garantir que tenha configurado corret
     ...
     <provider
         android:name="androidx.core.content.FileProvider"
-        android:authorities="com.example.igreja_browser.flutter_inappwebview.fileprovider"
+        android:authorities="br.com.faspbr.flutter_inappwebview.fileprovider"
         android:exported="false"
         android:grantUriPermissions="true">
         <meta-data
@@ -82,6 +82,6 @@ Além disso, você precisa criar um arquivo XML chamado `provider_paths.xml` na 
 </paths>
 ```
 
-Certifique-se de substituir `"com.example.igreja_browser.flutter_inappwebview.fileprovider"` pelo nome do pacote do seu aplicativo.
+Certifique-se de substituir `"br.com.faspbr.flutter_inappwebview.fileprovider"` pelo nome do pacote do seu aplicativo.
 
 Depois de configurar corretamente o provedor de arquivos em seu AndroidManifest.xml e `provider_paths.xml`, o erro deve ser resolvido e você deve conseguir acessar o provedor de arquivos sem problemas.

@@ -1,4 +1,4 @@
-package com.example.igreja_browser
+package br.com.faspbr
 
 import io.flutter.embedding.android.FlutterActivity
 

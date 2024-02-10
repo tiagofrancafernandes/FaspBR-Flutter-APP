@@ -90,12 +90,12 @@ BEGIN
         BLOCK "040904e4"
         BEGIN
             VALUE "CompanyName", "com.example" "\0"
-            VALUE "FileDescription", "igreja_browser" "\0"
+            VALUE "FileDescription", "faspbr_app" "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
-            VALUE "InternalName", "igreja_browser" "\0"
+            VALUE "InternalName", "faspbr_app" "\0"
             VALUE "LegalCopyright", "Copyright (C) 2023 com.example. All rights reserved." "\0"
-            VALUE "OriginalFilename", "igreja_browser.exe" "\0"
-            VALUE "ProductName", "igreja_browser" "\0"
+            VALUE "OriginalFilename", "faspbr_app.exe" "\0"
+            VALUE "ProductName", "faspbr_app" "\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"
         END
     END
