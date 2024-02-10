@@ -22,6 +22,11 @@ cd android; ./gradlew clean
 flutter clean
 ```
 
+* Build APK
+```sh
+flutter build apk
+```
+
 ## Getting Started
 
 This project is a starting point for a Flutter application.
