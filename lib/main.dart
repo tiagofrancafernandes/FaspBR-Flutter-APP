@@ -63,7 +63,8 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: const Color.fromARGB(255, 58, 133, 183)),
         useMaterial3: true,
       ),
-      home: const MyHomePage(title: ''),
+    //   home: const MyHomePage(title: ''),
+      home: const WebViewExample(title: ''),
     );
   }
 }
@@ -83,27 +84,65 @@ class MyHomePage extends StatefulWidget {
   final String title;
 
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  _WebViewExampleState createState() => _WebViewExampleState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class WebViewExample extends StatefulWidget {
+  const WebViewExample({super.key, required this.title});
 
+  final String title;
+  @override
+  _WebViewExampleState createState() => _WebViewExampleState();
+}
 
-  InAppWebView webView = InAppWebView(
-    initialUrlRequest: URLRequest(url: Uri.parse("https://www.faspbr.com.br")),
-  );
-
+class _WebViewExampleState extends State<WebViewExample> {
+  InAppWebViewController? webView;
 
   @override
   Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
-    return Scaffold(
-      body: SafeArea(child: webView),
+    return WillPopScope(
+      onWillPop: () async {
+        if (webView != null) {
+          bool canGoBack = await webView!.canGoBack();
+          if (canGoBack) {
+            webView!.goBack();
+            return false;
+          }
+        }
+        return true;
+      },
+      child: Scaffold(
+        // appBar: AppBar(
+        //   title: Text("FaspBR"), // Show top TITLE
+        // ),
+
+        // body: Container( // Takes up the entire screen, including the part below the camera
+        // body: SafeArea( // Show boxed (shows content only below the camera area)
+        body: SafeArea(
+          child: InAppWebView(
+            initialUrlRequest: URLRequest(url: Uri.parse("https://www.faspbr.com.br")),
+            initialOptions: InAppWebViewGroupOptions(
+              crossPlatform: InAppWebViewOptions(
+                useShouldOverrideUrlLoading: true,
+              ),
+            ),
+            onWebViewCreated: (controller) {
+              webView = controller;
+            },
+            onLoadStart: (controller, url) {
+            //   print("onLoadStart $url");
+            },
+            onLoadStop: (controller, url) {
+            //   print("onLoadStop $url");
+            },
+            shouldOverrideUrlLoading: (controller, navigationAction) async {
+              var uri = navigationAction.request.url!;
+              print("shouldOverrideUrlLoading $uri");
+              return NavigationActionPolicy.ALLOW;
+            },
+          ),
+        ),
+      ),
     );
   }
 }
